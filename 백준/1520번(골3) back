@@ -1,0 +1,27 @@
+n,m = map(int, input().split())
+lis = []
+for _ in range(n):
+  lis.append(list(map(int, input().split())))
+count = 0
+i = 0
+j = 0
+def back(i,j):
+  global count
+  if i == n - 1 and j == m - 1:
+    count += 1
+    return
+  else:
+    if i != 0 and lis[i][j] > lis[i-1][j]:
+      back(i - 1, j)
+    if j != (m-1) and lis[i][j] > lis[i][j+1]:
+      back(i , j + 1)
+    if i != (n-1) and lis[i][j] > lis[i+1][j]:
+      back(i + 1, j)
+    if j != 0 and lis[i][j] > lis[i][j-1]:
+      back(i, j - 1)
+    else:
+      return
+back(0,0)
+print(count)
+
+    
